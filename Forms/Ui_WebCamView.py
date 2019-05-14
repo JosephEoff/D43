@@ -29,6 +29,7 @@ class Ui_WebCamView(object):
         sizePolicy.setHeightForWidth(self.viewer.sizePolicy().hasHeightForWidth())
         self.viewer.setSizePolicy(sizePolicy)
         self.viewer.setMinimumSize(QtCore.QSize(50, 50))
+        self.viewer.setStyleSheet("background-color: rgba(0, 0, 0, 0);")
         self.viewer.setFrameShape(QtWidgets.QFrame.Box)
         self.viewer.setFrameShadow(QtWidgets.QFrame.Plain)
         self.viewer.setText("")
