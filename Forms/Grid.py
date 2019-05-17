@@ -17,7 +17,7 @@ class Grid(QWidget, Ui_Grid):
         qp.end()
         
     def drawGrid(self, event, qp):
-        pen = QPen(QColor(255, 120, 0, 100), 2, Qt.SolidLine)
+        pen = QPen(QColor(255, 120, 0, 100), 1, Qt.SolidLine)
         qp.setPen(pen)
         cwidth=self.width()/2
         cheight= self.height()/2

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>651</width>
-    <height>602</height>
+    <width>513</width>
+    <height>596</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,13 +20,16 @@
    <string>D43 - Oscilloscope Camera</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(0, 0, 0);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <property name="spacing">
-     <number>0</number>
-    </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -39,39 +42,24 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <item>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <property name="spacing">
-       <number>0</number>
+    <item row="0" column="0">
+     <widget class="Controls" name="widgetScope" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
-      <property name="sizeConstraint">
-       <enum>QLayout::SetNoConstraint</enum>
-      </property>
-      <item>
-       <widget class="Grid" name="cmGrid" native="true">
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="WebCamView" name="cameraView" native="true"/>
-         </item>
-        </layout>
-       </widget>
-      </item>
-     </layout>
+     </widget>
     </item>
    </layout>
   </widget>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>WebCamView</class>
+   <class>Controls</class>
    <extends>QWidget</extends>
-   <header>Forms.WebCamView</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Grid</class>
-   <extends>QWidget</extends>
-   <header location="global">Forms.Grid</header>
+   <header location="global">Forms.Controls</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -11,32 +11,31 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(651, 602)
+        MainWindow.resize(513, 596)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setStyleSheet("background-color: rgb(0, 0, 0);")
+        MainWindow.setStyleSheet("")
         self.centralWidget = QtWidgets.QWidget(MainWindow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.centralWidget.sizePolicy().hasHeightForWidth())
+        self.centralWidget.setSizePolicy(sizePolicy)
         self.centralWidget.setObjectName("centralWidget")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centralWidget)
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_2.setSpacing(0)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.verticalLayout = QtWidgets.QVBoxLayout()
-        self.verticalLayout.setSizeConstraint(QtWidgets.QLayout.SetNoConstraint)
-        self.verticalLayout.setSpacing(0)
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.cmGrid = Grid(self.centralWidget)
-        self.cmGrid.setObjectName("cmGrid")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.cmGrid)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.cameraView = WebCamView(self.cmGrid)
-        self.cameraView.setObjectName("cameraView")
-        self.horizontalLayout.addWidget(self.cameraView)
-        self.verticalLayout.addWidget(self.cmGrid)
-        self.verticalLayout_2.addLayout(self.verticalLayout)
+        self.gridLayout = QtWidgets.QGridLayout(self.centralWidget)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout.setObjectName("gridLayout")
+        self.widgetScope = Controls(self.centralWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.widgetScope.sizePolicy().hasHeightForWidth())
+        self.widgetScope.setSizePolicy(sizePolicy)
+        self.widgetScope.setObjectName("widgetScope")
+        self.gridLayout.addWidget(self.widgetScope, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralWidget)
 
         self.retranslateUi(MainWindow)
@@ -46,8 +45,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "D43 - Oscilloscope Camera"))
 
-from Forms.Grid import Grid
-from Forms.WebCamView import WebCamView
+from Forms.Controls import Controls
 
 if __name__ == "__main__":
     import sys
