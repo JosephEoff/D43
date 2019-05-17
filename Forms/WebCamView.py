@@ -8,9 +8,10 @@ class WebCamView(QWidget, Ui_WebCamView):
     def __init__(self, parent):
             super(QWidget, self).__init__()
             
-            self.setupUi(parent)
+            self.setupUi(self)
             self.transparentThreshold = 0
             self.thresholdMode = cv2.THRESH_BINARY
+            self.rescaled=False
 
     def clearImage(self):
         self.viewer.clear()
@@ -25,7 +26,5 @@ class WebCamView(QWidget, Ui_WebCamView):
         img = QtGui.QImage(scopeImage, scopeImage.shape[1], scopeImage.shape[0], QtGui.QImage.Format_RGBA8888)
         pix = QtGui.QPixmap.fromImage(img)
         self.viewer.setPixmap(pix)
-        self.viewer.resize(self.viewer.minimumSizeHint() )#pix.size().width(),  pix.size().height())
-      
-        #self.resize(self.minimumSizeHint())
+
      

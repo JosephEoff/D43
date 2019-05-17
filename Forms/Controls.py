@@ -11,8 +11,8 @@ class Controls(QWidget, Ui_Controls):
         self.transparentThreshold = 20
         self.thresholdMode = cv2.THRESH_BINARY
         self.fps = 24
-        self.videocapture = None #cv2.VideoCapture(0)
-        self.setupUi(self) #parent
+        self.videocapture = None 
+        self.setupUi(self)
         self.groupBoxCalibration.hide()
         self.availableCameras = self.getListOfCameras()
         self.comboBoxCameraSelect.addItems(self.availableCameras)
@@ -73,8 +73,5 @@ class Controls(QWidget, Ui_Controls):
         else:
             self.widgetDigitizedView.clearImage()
             
-        #self.widgetGridView.resize(frame.shape[1],  frame.shape[0])
-        self.resize(self.minimumSizeHint())
-        #self.parent().resize(self.parent().minimumSizeHint())
-
+        self.widgetGridView.updateGridSize(frame.shape[1],  frame.shape[0])
         

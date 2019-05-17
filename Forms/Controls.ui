@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>672</width>
-    <height>732</height>
+    <width>478</width>
+    <height>696</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -41,21 +41,24 @@
       <enum>QLayout::SetNoConstraint</enum>
      </property>
      <property name="leftMargin">
-      <number>10</number>
+      <number>0</number>
      </property>
      <property name="topMargin">
-      <number>10</number>
+      <number>0</number>
      </property>
      <property name="rightMargin">
-      <number>10</number>
+      <number>0</number>
      </property>
      <property name="bottomMargin">
-      <number>10</number>
+      <number>0</number>
      </property>
-     <item row="0" column="0">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <item row="0" column="2">
       <layout class="QGridLayout" name="layoutDisplay">
        <property name="sizeConstraint">
-        <enum>QLayout::SetNoConstraint</enum>
+        <enum>QLayout::SetFixedSize</enum>
        </property>
        <property name="leftMargin">
         <number>0</number>
@@ -69,128 +72,10 @@
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <property name="horizontalSpacing">
+       <property name="spacing">
         <number>0</number>
        </property>
-       <item row="0" column="0">
-        <widget class="WebCamView" name="widgetLiveView" native="true">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(0, 0, 0);</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_7">
-          <property name="sizeConstraint">
-           <enum>QLayout::SetNoConstraint</enum>
-          </property>
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
-          <property name="spacing">
-           <number>0</number>
-          </property>
-          <item row="0" column="0">
-           <widget class="DigitizerView" name="widgetDigitizedView" native="true">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>50</width>
-              <height>50</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_8">
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <property name="horizontalSpacing">
-              <number>0</number>
-             </property>
-             <item row="0" column="0">
-              <widget class="Grid" name="widgetGridView" native="true">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
-               </property>
-               <layout class="QGridLayout" name="gridLayout_9">
-                <property name="leftMargin">
-                 <number>0</number>
-                </property>
-                <property name="topMargin">
-                 <number>0</number>
-                </property>
-                <property name="rightMargin">
-                 <number>0</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>0</number>
-                </property>
-                <property name="horizontalSpacing">
-                 <number>0</number>
-                </property>
-                <item row="0" column="0">
-                 <widget class="QWidget" name="widgetCursorView" native="true">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="1" column="0">
+       <item row="1" column="0" alignment="Qt::AlignLeft|Qt::AlignTop">
         <widget class="QGroupBox" name="groupBoxMeasurements">
          <property name="sizePolicy">
           <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
@@ -209,22 +94,19 @@
            <enum>QLayout::SetNoConstraint</enum>
           </property>
           <property name="leftMargin">
-           <number>0</number>
+           <number>1</number>
           </property>
           <property name="topMargin">
-           <number>0</number>
+           <number>1</number>
           </property>
           <property name="rightMargin">
-           <number>0</number>
+           <number>1</number>
           </property>
           <property name="bottomMargin">
-           <number>0</number>
+           <number>1</number>
           </property>
-          <property name="horizontalSpacing">
-           <number>0</number>
-          </property>
-          <property name="verticalSpacing">
-           <number>6</number>
+          <property name="spacing">
+           <number>1</number>
           </property>
           <item row="0" column="0">
            <widget class="QGroupBox" name="groupBoxTime">
@@ -246,6 +128,12 @@
              </property>
              <item row="0" column="0">
               <widget class="QLabel" name="labelDeltaT">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="text">
                 <string>T</string>
                </property>
@@ -253,6 +141,12 @@
              </item>
              <item row="0" column="1">
               <widget class="QLabel" name="labelDeltaTDisplay">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="text">
                 <string>0</string>
                </property>
@@ -260,6 +154,12 @@
              </item>
              <item row="1" column="0">
               <widget class="QLabel" name="labelTInverse">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="text">
                 <string>1/T</string>
                </property>
@@ -267,6 +167,12 @@
              </item>
              <item row="1" column="1">
               <widget class="QLabel" name="labelTInverseDisplay">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="text">
                 <string>0</string>
                </property>
@@ -274,6 +180,12 @@
              </item>
              <item row="2" column="0">
               <widget class="QLabel" name="labelF">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="text">
                 <string>F</string>
                </property>
@@ -281,6 +193,12 @@
              </item>
              <item row="2" column="1">
               <widget class="QLabel" name="labelFDisplay">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="text">
                 <string>0</string>
                </property>
@@ -289,10 +207,10 @@
             </layout>
            </widget>
           </item>
-          <item row="0" column="1">
+          <item row="0" column="2">
            <widget class="QGroupBox" name="groupBoxVoltage">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -309,6 +227,12 @@
              </property>
              <item row="0" column="0">
               <widget class="QLabel" name="labelVpp">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="text">
                 <string>Vpp</string>
                </property>
@@ -316,6 +240,12 @@
              </item>
              <item row="0" column="1">
               <widget class="QLabel" name="labelVppDisplay">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="text">
                 <string>0</string>
                </property>
@@ -324,27 +254,157 @@
             </layout>
            </widget>
           </item>
+          <item row="0" column="1">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
          </layout>
         </widget>
        </item>
+       <item row="2" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="gridLayout_10">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetNoConstraint</enum>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item row="0" column="0" alignment="Qt::AlignTop">
+          <widget class="WebCamView" name="widgetLiveView" native="true">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>50</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(0, 0, 0);</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="DigitizerView" name="widgetDigitizedView" native="true">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>50</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" alignment="Qt::AlignLeft">
+          <widget class="Grid" name="widgetGridView" native="true">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>50</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QWidget" name="widgetCursorView" native="true">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>50</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
       </layout>
      </item>
-     <item row="0" column="1">
+     <item row="0" column="3">
       <layout class="QGridLayout" name="layoutControls">
        <property name="sizeConstraint">
-        <enum>QLayout::SetNoConstraint</enum>
+        <enum>QLayout::SetFixedSize</enum>
        </property>
        <property name="leftMargin">
-        <number>10</number>
+        <number>1</number>
        </property>
        <property name="topMargin">
-        <number>10</number>
+        <number>1</number>
        </property>
        <property name="rightMargin">
-        <number>10</number>
+        <number>1</number>
        </property>
        <property name="bottomMargin">
-        <number>10</number>
+        <number>1</number>
+       </property>
+       <property name="horizontalSpacing">
+        <number>1</number>
        </property>
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxSettings">
@@ -358,6 +418,21 @@
           <string>Settings</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
+          <property name="leftMargin">
+           <number>3</number>
+          </property>
+          <property name="topMargin">
+           <number>3</number>
+          </property>
+          <property name="rightMargin">
+           <number>3</number>
+          </property>
+          <property name="bottomMargin">
+           <number>3</number>
+          </property>
+          <property name="spacing">
+           <number>3</number>
+          </property>
           <item row="0" column="0">
            <widget class="QComboBox" name="comboBoxTimeBase">
             <property name="toolTip">
@@ -429,6 +504,24 @@
           <string>Measurement</string>
          </property>
          <layout class="QFormLayout" name="formLayout_3">
+          <property name="horizontalSpacing">
+           <number>3</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>3</number>
+          </property>
+          <property name="leftMargin">
+           <number>3</number>
+          </property>
+          <property name="topMargin">
+           <number>3</number>
+          </property>
+          <property name="rightMargin">
+           <number>3</number>
+          </property>
+          <property name="bottomMargin">
+           <number>3</number>
+          </property>
           <item row="0" column="0">
            <widget class="QSpinBox" name="spinBoxSelectedCycles">
             <property name="minimum">
@@ -473,6 +566,21 @@
           <string>View</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_5">
+          <property name="leftMargin">
+           <number>3</number>
+          </property>
+          <property name="topMargin">
+           <number>3</number>
+          </property>
+          <property name="rightMargin">
+           <number>3</number>
+          </property>
+          <property name="bottomMargin">
+           <number>3</number>
+          </property>
+          <property name="spacing">
+           <number>3</number>
+          </property>
           <item row="2" column="0">
            <widget class="QCheckBox" name="checkBoxLive">
             <property name="text">
@@ -519,6 +627,21 @@
           <string>Storage</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_4">
+          <property name="leftMargin">
+           <number>3</number>
+          </property>
+          <property name="topMargin">
+           <number>3</number>
+          </property>
+          <property name="rightMargin">
+           <number>3</number>
+          </property>
+          <property name="bottomMargin">
+           <number>3</number>
+          </property>
+          <property name="spacing">
+           <number>3</number>
+          </property>
           <item row="0" column="0">
            <widget class="QPushButton" name="pushButtonSnapshot">
             <property name="text">
@@ -548,6 +671,21 @@
           <string>Setup</string>
          </property>
          <layout class="QGridLayout" name="gridLayout">
+          <property name="leftMargin">
+           <number>3</number>
+          </property>
+          <property name="topMargin">
+           <number>3</number>
+          </property>
+          <property name="rightMargin">
+           <number>3</number>
+          </property>
+          <property name="bottomMargin">
+           <number>3</number>
+          </property>
+          <property name="spacing">
+           <number>3</number>
+          </property>
           <item row="0" column="0">
            <widget class="QCheckBox" name="checkBoxShowCalibration">
             <property name="text">
@@ -575,6 +713,21 @@
          <layout class="QGridLayout" name="gridLayout_2">
           <property name="sizeConstraint">
            <enum>QLayout::SetMinimumSize</enum>
+          </property>
+          <property name="leftMargin">
+           <number>3</number>
+          </property>
+          <property name="topMargin">
+           <number>3</number>
+          </property>
+          <property name="rightMargin">
+           <number>3</number>
+          </property>
+          <property name="bottomMargin">
+           <number>3</number>
+          </property>
+          <property name="spacing">
+           <number>3</number>
           </property>
           <item row="1" column="0">
            <widget class="QPushButton" name="pushButtonHoroizontalDivisions">

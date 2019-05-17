@@ -8,7 +8,7 @@ class DigitizerView(QWidget, Ui_WebCamView):
     def __init__(self, parent):
         super(QWidget, self).__init__()
             
-        self.setupUi(parent)
+        self.setupUi(self)
     
     def clearImage(self):
         self.viewer.clear()
@@ -28,7 +28,7 @@ class DigitizerView(QWidget, Ui_WebCamView):
         qp.end()
         
         self.viewer.setPixmap(digipix)
-        self.viewer.resize(self.viewer.minimumSizeHint() )#pix.size().width(),  pix.size().height())
+        #self.viewer.resize(self.viewer.minimumSizeHint() )#pix.size().width(),  pix.size().height())
       
         #self.resize(self.minimumSizeHint())
        

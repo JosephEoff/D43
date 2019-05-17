@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>235</width>
-    <height>215</height>
+    <width>102</width>
+    <height>120</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -25,26 +25,11 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="spacing">
-    <number>0</number>
-   </property>
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" alignment="Qt::AlignLeft|Qt::AlignTop">
     <widget class="QLabel" name="viewer">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>

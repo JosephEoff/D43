@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project DigitalD43 -->
-<!-- Saved: 2019-05-17, 03:08:15 -->
+<!-- Saved: 2019-05-17, 07:57:19 -->
 <!-- Copyright (C) 2019 Joseph Eoff, joseph.eoff@molear.de -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -16,6 +16,7 @@
   <Sources>
     <Source>D43.py</Source>
     <Source>Forms/Controls.py</Source>
+    <Source>Forms/DigitizerView.py</Source>
     <Source>Forms/Grid.py</Source>
     <Source>Forms/Ui_Controls.py</Source>
     <Source>Forms/Ui_Grid.py</Source>
