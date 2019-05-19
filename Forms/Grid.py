@@ -13,6 +13,9 @@ class Grid(QWidget, Ui_WebCamView):
             self.pixelsPercm_V=45.7
             self.gridWidth = 100
             self.gridHeight = 100
+            
+    def paintEvent(self, event):
+        self.drawGrid()
                 
     def drawGrid(self):
         gridPixmap = QPixmap(self.gridWidth, self.gridHeight)

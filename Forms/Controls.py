@@ -1,8 +1,12 @@
-from PyQt5 import QtCore, QtGui,  QtMultimedia
+from PyQt5 import QtCore, QtMultimedia
 from PyQt5.QtWidgets import QWidget
+from PyQt5.QtGui import  QColor
 import cv2
 from Forms.Ui_Controls import Ui_Controls
-import numpy as np
+from Forms.Cursor import Cursor
+from Forms.Cursor_Enums import CursorStyle
+from Forms.Cursor_Enums import CursorType
+
 
 class Controls(QWidget, Ui_Controls):
     def __init__(self, parent):
@@ -18,6 +22,23 @@ class Controls(QWidget, Ui_Controls):
         self.comboBoxCameraSelect.addItems(self.availableCameras)
         self.radioButtonRun.toggled.connect(self.doRun)
         self.comboBoxCameraSelect.currentIndexChanged.connect(self.changeCamera)
+        self.addCursors()
+    
+    def addCursors(self):
+        cursorColor = QColor(0, 186, 255, 255)
+        cursorBarColor = QColor(0, 186, 255, 100)
+        
+        cursor = Cursor(15,  cursorColor,  cursorBarColor,  CursorType.horizontal,  CursorStyle.barred)
+        self.widgetCursorControl.addCursor(cursor)
+        
+        cursor = Cursor(15,  cursorColor,  cursorBarColor,  CursorType.vertical,  CursorStyle.barred)
+        self.widgetCursorControl.addCursor(cursor)
+        
+        cursor = Cursor(200,  cursorColor,  cursorBarColor,  CursorType.vertical,  CursorStyle.barred)
+        self.widgetCursorControl.addCursor(cursor)
+        
+        cursor = Cursor(200,  cursorColor,  cursorBarColor,  CursorType.horizontal,  CursorStyle.barred)
+        self.widgetCursorControl.addCursor(cursor)
     
     def doRun(self):
         if self.radioButtonRun.isChecked():
@@ -74,4 +95,5 @@ class Controls(QWidget, Ui_Controls):
             self.widgetDigitizedView.clearImage()
             
         self.widgetGridView.updateGridSize(frame.shape[1],  frame.shape[0])
+        self.widgetCursorControl.updateSize(frame.shape[1],  frame.shape[0])
         

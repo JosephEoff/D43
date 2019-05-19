@@ -19,6 +19,8 @@ class Ui_WebCamView(object):
         WebCamView.setSizePolicy(sizePolicy)
         WebCamView.setMinimumSize(QtCore.QSize(50, 50))
         self.gridLayout = QtWidgets.QGridLayout(WebCamView)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName("gridLayout")
         self.viewer = QtWidgets.QLabel(WebCamView)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
