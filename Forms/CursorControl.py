@@ -5,6 +5,7 @@ from PyQt5.QtCore import Qt,  QLineF
 from Forms.Ui_WebCamView import Ui_WebCamView
 from Forms.Cursor_Enums import CursorType
 from Forms.Cursor_Enums import CursorStyle
+from Forms.Cursor import Cursor
 
 class CursorControl(QWidget,  Ui_WebCamView):
     def __init__(self, parent):
@@ -19,6 +20,27 @@ class CursorControl(QWidget,  Ui_WebCamView):
         self.setMouseTracking(True)
         self.movingCursor = None
         
+    def addCursors(self):
+        cursorColor = QColor(0, 186, 255, 255)
+        cursorBarColor = QColor(0, 186, 255, 100)
+        
+        cursor = Cursor(15,  cursorColor,  cursorBarColor,  CursorType.horizontal,  CursorStyle.barred)
+        self.addCursor(cursor)
+        
+        cursor = Cursor(15,  cursorColor,  cursorBarColor,  CursorType.vertical,  CursorStyle.barred)
+        self.addCursor(cursor)
+        
+        cursor = Cursor(200,  cursorColor,  cursorBarColor,  CursorType.vertical,  CursorStyle.barred)
+        self.addCursor(cursor)
+        
+        cursor = Cursor(200,  cursorColor,  cursorBarColor,  CursorType.horizontal,  CursorStyle.barred)
+        self.addCursor(cursor)
+        
+        cursorColor = QColor(128, 128, 128, 255)
+        cursorBarColor = QColor(128, 128, 128, 100)
+        cursor = Cursor(200,  cursorColor,  cursorBarColor,  CursorType.zeroline,  CursorStyle.barred)
+        self.addCursor(cursor)
+        
     def mousePressEvent(self, event):
         if  not event.button() == Qt.LeftButton:
             self.movingCursor = None
@@ -30,7 +52,12 @@ class CursorControl(QWidget,  Ui_WebCamView):
             event.ignore()
             return        
         self.movingCursor = cursor
-        
+    
+    def mouseReleaseEvent(self, event):
+        if  event.button() == Qt.LeftButton:
+            self.movingCursor = None
+            event.ignore()
+    
     def mouseMoveEvent(self, event):
         if self.movingCursor is None:
             return
@@ -106,7 +133,7 @@ class CursorControl(QWidget,  Ui_WebCamView):
         qp.end()
     
     def getLine(self,  cursor):
-        if cursor.getType() == CursorType.vertical:
+        if cursor.getType() == CursorType.vertical or  cursor.getType() == CursorType.zeroline:
             line = self.makeHorizontalLine(cursor.getCursorPosition())
         else:
             line = self.makeVerticalLine(cursor.getCursorPosition())
@@ -114,12 +141,12 @@ class CursorControl(QWidget,  Ui_WebCamView):
         
     def getBars(self, cursor):
         lines = []
-        if cursor.getType() == CursorType.vertical:
+        if cursor.getType() == CursorType.vertical or  cursor.getType() == CursorType.zeroline:
             line = self.makeHorizontalLine(cursor.getCursorPosition() + self.barWidth)
             lines.append(line)
             line = self.makeHorizontalLine(cursor.getCursorPosition() - self.barWidth)
             lines.append(line)
-        else:
+        elif cursor.getType() == CursorType.horizontal:
             line = self.makeVerticalLine(cursor.getCursorPosition() + self.barWidth)
             lines.append(line)
             line = self.makeVerticalLine(cursor.getCursorPosition() - self.barWidth)
