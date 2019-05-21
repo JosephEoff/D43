@@ -13,12 +13,23 @@ class CursorControl(QWidget,  Ui_WebCamView):
         
         self.setupUi(self)
         self.parent=parent
+        
+        self.setMouseTracking(True)
+        
         self.cursors = []
         self.barWidth= 4
         self.cursorWidth = self.width()
         self.cursorHeight = self.height()
-        self.setMouseTracking(True)
+
         self.movingCursor = None
+        
+        self.cursor_T1 = None
+        self.cursor_T2 = None
+        self.cursor_V1 = None
+        self.cursor_V2 = None
+        self.cursor_zero = None
+        self.addCursors()
+        
         
     def addCursors(self):
         cursorColor = QColor(0, 186, 255, 255)
@@ -26,20 +37,40 @@ class CursorControl(QWidget,  Ui_WebCamView):
         
         cursor = Cursor(15,  cursorColor,  cursorBarColor,  CursorType.horizontal,  CursorStyle.barred)
         self.addCursor(cursor)
+        self.cursor_T1 = cursor
         
         cursor = Cursor(15,  cursorColor,  cursorBarColor,  CursorType.vertical,  CursorStyle.barred)
         self.addCursor(cursor)
+        self.cursor_V1 = cursor
         
         cursor = Cursor(200,  cursorColor,  cursorBarColor,  CursorType.vertical,  CursorStyle.barred)
         self.addCursor(cursor)
+        self.cursor_V2 = cursor
         
         cursor = Cursor(200,  cursorColor,  cursorBarColor,  CursorType.horizontal,  CursorStyle.barred)
         self.addCursor(cursor)
+        self.cursor_T2 = cursor
         
         cursorColor = QColor(128, 128, 128, 255)
         cursorBarColor = QColor(128, 128, 128, 100)
         cursor = Cursor(200,  cursorColor,  cursorBarColor,  CursorType.zeroline,  CursorStyle.barred)
         self.addCursor(cursor)
+        self.cursor_zero = cursor
+        
+    def getX1_pixels(self):
+        return self.cursor_T1.getCursorPosition()
+        
+    def getX2_pixels(self):
+        return self.cursor_T2.getCursorPosition()
+        
+    def getY1_pixels(self):
+        return self.cursor_V1.getCursorPosition()
+        
+    def getY2_pixels(self):
+        return self.cursor_V2.getCursorPosition()
+        
+    def getZero_pixels(self):
+        return self.cursor_zero.getCursorPosition()
         
     def mousePressEvent(self, event):
         if  not event.button() == Qt.LeftButton:
@@ -109,7 +140,14 @@ class CursorControl(QWidget,  Ui_WebCamView):
         cursorPixmap.fill(QColor(255, 255, 255, 0))
         self.viewer.setPixmap(cursorPixmap)
         
-    
+        for cursor in self.cursors:
+            if cursor.getType() == CursorType.vertical or  cursor.getType() == CursorType.zeroline:
+                if cursor.getCursorPosition() > self.cursorHeight:
+                    cursor.setCursorPosition(self.cursorHeight -2)
+            if cursor.getType() == CursorType.horizontal:
+                if cursor.getCursorPosition() > self.cursorWidth:
+                    cursor.setCursorPosition(self.cursorWidth-2)
+        
     def addCursor(self,  cursor):
         self.cursors.append(cursor)
         self.drawCursors()

@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtMultimedia
+from PyQt5.QtCore import QSettings
 from PyQt5.QtWidgets import QWidget
 import cv2
 from Forms.Ui_Controls import Ui_Controls
@@ -17,7 +18,39 @@ class Controls(QWidget, Ui_Controls):
         self.comboBoxCameraSelect.addItems(self.availableCameras)
         self.radioButtonRun.toggled.connect(self.doRun)
         self.comboBoxCameraSelect.currentIndexChanged.connect(self.changeCamera)
-        self.widgetCursorControl.addCursors()
+        self.pushButtonCrop.clicked.connect(self.on_buttonCropClicked)
+        self.pushButtonReset.clicked.connect(self.on_buttonResetClicked)
+        
+        self.settings = QSettings()
+        self.rawImageWidth = int(self.settings.value("rawImageWidth",  640))
+        self.rawImageHeight = int(self.settings.value("rawImageHeight",  480))
+        self.crop_X1 = int(self.settings.value("crop_X1",  0))
+        self.crop_X2 = int(self.settings.value("crop_X2",  640))
+        self.crop_Y1 = int(self.settings.value("crop_Y1",  0))
+        self.crop_Y2 = int(self.settings.value("crop_Y2",  480))
+
+    def on_buttonCropClicked(self):
+        self.crop_X1 = self.widgetCursorControl.getX1_pixels()
+        self.crop_X2 = self.widgetCursorControl.getX2_pixels()
+        self.crop_Y1 = self.widgetCursorControl.getY1_pixels()
+        self.crop_Y2 = self.widgetCursorControl.getY2_pixels()
+        
+        if self.crop_X2<self.crop_X1:
+            self.crop_X1,  self.crop_X2 = self.crop_X2,  self.crop_X1
+        
+        if self.crop_Y2<self.crop_Y1:
+            self.crop_Y1,  self.crop_Y2 = self.crop_Y2,  self.crop_Y1
+            
+        self.settings.setValue("crop_X1",  self.crop_X1)
+        self.settings.setValue("crop_X2",  self.crop_X2)
+        self.settings.setValue("crop_Y1",  self.crop_Y1)
+        self.settings.setValue("crop_Y2",  self.crop_Y2)
+    
+    def on_buttonResetClicked(self):
+        self.crop_X1 = 0
+        self.crop_X2 = self.rawImageWidth
+        self.crop_Y1 = 0
+        self.crop_Y2 = self.rawImageHeight
     
     def doRun(self):
         if self.radioButtonRun.isChecked():
@@ -59,7 +92,7 @@ class Controls(QWidget, Ui_Controls):
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         #cut section from image 
         # [y1:y2, x1:x2, keep all the colors.]
-            frame = frame[65:498, 126:551, :]
+            frame = frame[self.crop_Y1:self.crop_Y2, self.crop_X1:self.crop_X2, :]
         except:
            return
  
