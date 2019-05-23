@@ -9,10 +9,14 @@ class Grid(QWidget, Ui_WebCamView):
             super(QWidget, self).__init__()
             
             self.setupUi(self) 
-            self.pixelsPercm_H=45.7
-            self.pixelsPercm_V=45.7
+            self.pixelsPercm_H=30
+            self.pixelsPercm_V=30
             self.gridWidth = 100
             self.gridHeight = 100
+            self.grid_X1 = 0
+            self.grid_X2 = 100
+            self.grid_Y1 = 0
+            self.grid_Y2 = 100
             
     def paintEvent(self, event):
         self.drawGrid()
@@ -25,10 +29,10 @@ class Grid(QWidget, Ui_WebCamView):
         qp.begin(gridPixmap)
         pen = QPen(QColor(255, 120, 0, 100), 1, Qt.SolidLine)
         qp.setPen(pen)
-        cwidth=self.gridWidth/2
-        cheight= self.gridHeight/2
-        hcount=cwidth/self.pixelsPercm_H
-        vcount=cheight/self.pixelsPercm_V
+        cwidth= (self.grid_X1 + self.grid_X2)/2
+        cheight= (self.grid_Y1+self.grid_Y2)/2
+        hcount=cwidth/self.pixelsPercm_H + 1
+        vcount=cheight/self.pixelsPercm_V + 1
         
         for n in range(int(hcount+0.5)):
             xstep= n*self.pixelsPercm_H
@@ -52,9 +56,19 @@ class Grid(QWidget, Ui_WebCamView):
         self.gridWidth = width
         self.drawGrid()
     
-    def updateGridSpacing(self,  pixelsPercm_H,  pixelsPerc_V):
-        self.pixelsPercm_H=pixelsPercm_H
-        self.pixelsPercm_V=pixelsPerc_V
+    def updateGridSpacing(self,  X1,  X2,  Y1,  Y2,  horizontalDivisions,  verticalDivisions):
+        self.grid_X1 = X1
+        self.grid_X2 = X2
+        self.grid_Y1 = Y1
+        self.grid_Y2 = Y2
+        self.pixelsPercm_H = abs(X2- X1)/horizontalDivisions
+        self.pixelsPercm_V = abs(Y2-Y1)/verticalDivisions
         self.drawGrid()
+        
+    def getPixelsPerDivision_Horizontal(self):
+        return self.pixelsPercm_H
+    
+    def getPixelsPerDivisionVertical(self):
+        return self.pixelsPercm_V
     
         

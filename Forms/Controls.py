@@ -20,6 +20,7 @@ class Controls(QWidget, Ui_Controls):
         self.comboBoxCameraSelect.currentIndexChanged.connect(self.changeCamera)
         self.pushButtonCrop.clicked.connect(self.on_buttonCropClicked)
         self.pushButtonReset.clicked.connect(self.on_buttonResetClicked)
+        self.pushButtonGrid.clicked.connect(self.on_buttonGridClicked)
         
         self.settings = QSettings()
         self.rawImageWidth = int(self.settings.value("rawImageWidth",  640))
@@ -28,7 +29,24 @@ class Controls(QWidget, Ui_Controls):
         self.crop_X2 = int(self.settings.value("crop_X2",  640))
         self.crop_Y1 = int(self.settings.value("crop_Y1",  0))
         self.crop_Y2 = int(self.settings.value("crop_Y2",  480))
+        self.grid_X1 = int(self.settings.value("grid_X1",  0))
+        self.grid_X2 = int(self.settings.value("grid_X2",  640))
+        self.grid_Y1 = int(self.settings.value("grid_Y1",  0))
+        self.grid_Y2 = int(self.settings.value("grid_Y2",  480))
+        self.grid_HorizontalDivisions = int(self.settings.value("grid_HorizontalDivisions",  8))
+        self.grid_VerticalDivisions = int(self.settings.value("grid_VerticalDivisions",  6))
+        self.spinBoxHorizontalDivisions.setValue(self.grid_HorizontalDivisions)
+        self.spinBoxVerticalDivisions.setValue(self.grid_VerticalDivisions)
+        self.updateGrid()
+        
+        self.updateDigitizingRange()
 
+    def updateGrid(self):
+        self.widgetGridView.updateGridSpacing(self.grid_X1,  self.grid_X2,  self.grid_Y1,  self.grid_Y2,  self.grid_HorizontalDivisions,  self.grid_VerticalDivisions)
+
+    def updateDigitizingRange(self):
+        self.widgetDigitizedView.setDigitizingRange(self.grid_X1,  self.grid_X2)
+        
     def on_buttonCropClicked(self):
         self.crop_X1 = self.widgetCursorControl.getX1_pixels()
         self.crop_X2 = self.widgetCursorControl.getX2_pixels()
@@ -45,6 +63,30 @@ class Controls(QWidget, Ui_Controls):
         self.settings.setValue("crop_X2",  self.crop_X2)
         self.settings.setValue("crop_Y1",  self.crop_Y1)
         self.settings.setValue("crop_Y2",  self.crop_Y2)
+        
+    def on_buttonGridClicked(self):
+        self.grid_X1 = self.widgetCursorControl.getX1_pixels()
+        self.grid_X2 = self.widgetCursorControl.getX2_pixels()
+        self.grid_Y1 = self.widgetCursorControl.getY1_pixels()
+        self.grid_Y2 = self.widgetCursorControl.getY2_pixels()
+        self.grid_HorizontalDivisions = self.spinBoxHorizontalDivisions.value()
+        self.grid_VerticalDivisions = self.spinBoxVerticalDivisions.value()
+        
+        if self.grid_X2<self.grid_X1:
+            self.grid_X1,  self.grid_X2 = self.grid_X2,  self.grid_X1
+        
+        if self.grid_Y2<self.grid_Y1:
+            self.grid_Y1,  self.grid_Y2 = self.grid_Y2,  self.grid_Y1
+        
+        self.updateGrid()
+        self.updateDigitizingRange()
+        
+        self.settings.setValue("grid_X1",  self.grid_X1)
+        self.settings.setValue("grid_X2",  self.grid_X2)
+        self.settings.setValue("grid_Y1", self.grid_Y1)
+        self.settings.setValue("grid_Y2",  self.grid_Y2)
+        self.settings.setValue("grid_HorizontalDivisions",  self.grid_HorizontalDivisions)
+        self.settings.setValue("grid_VerticalDivisions",  self.grid_VerticalDivisions)
     
     def on_buttonResetClicked(self):
         self.crop_X1 = 0

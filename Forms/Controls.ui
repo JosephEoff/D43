@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>478</width>
+    <width>516</width>
     <height>679</height>
    </rect>
   </property>
@@ -442,7 +442,7 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
+          <item row="0" column="2">
            <widget class="QLabel" name="labelTimeBase">
             <property name="text">
              <string>Timebase</string>
@@ -452,10 +452,17 @@
           <item row="1" column="0">
            <widget class="QComboBox" name="comboBoxVerticalDeflection"/>
           </item>
-          <item row="1" column="1">
+          <item row="1" column="2">
            <widget class="QLabel" name="labelVerticalDeflection">
             <property name="text">
              <string>Vertical deflection</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLabel" name="labelMultiplier">
+            <property name="text">
+             <string>Multiplier</string>
             </property>
            </widget>
           </item>
@@ -482,14 +489,14 @@
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QRadioButton" name="radioButtonX1000">
+              <property name="text">
+               <string>X1000</string>
+              </property>
+             </widget>
+            </item>
            </layout>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLabel" name="labelMultiplier">
-            <property name="text">
-             <string>Multiplier</string>
-            </property>
-           </widget>
           </item>
          </layout>
         </widget>
@@ -737,14 +744,14 @@
           <property name="spacing">
            <number>3</number>
           </property>
-          <item row="1" column="0">
-           <widget class="QPushButton" name="pushButtonHoroizontalDivisions">
+          <item row="1" column="1">
+           <widget class="QLabel" name="labelHorizontalDivisions">
             <property name="text">
              <string>Horizontal Divisions</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
+          <item row="1" column="3">
            <widget class="QSpinBox" name="spinBoxHorizontalDivisions">
             <property name="minimum">
              <number>1</number>
@@ -754,7 +761,7 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
+          <item row="0" column="3">
            <widget class="QPushButton" name="pushButtonReset">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -767,21 +774,14 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
+          <item row="0" column="1">
            <widget class="QPushButton" name="pushButtonCrop">
             <property name="text">
              <string>Crop</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QPushButton" name="pushButtonVerticalDivisions">
-            <property name="text">
-             <string>Vertical Divisions</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
+          <item row="2" column="3">
            <widget class="QSpinBox" name="spinBoxVerticalDivisions">
             <property name="minimum">
              <number>1</number>
@@ -791,7 +791,14 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="2" column="1">
+           <widget class="QLabel" name="labelVerticalDivisions">
+            <property name="text">
+             <string>Vertical Divisions</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3">
            <widget class="QCheckBox" name="checkBoxPassepartout">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -804,10 +811,10 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QPushButton" name="pushButtonDigitizingRange">
+          <item row="3" column="1">
+           <widget class="QPushButton" name="pushButtonGrid">
             <property name="text">
-             <string>Digitizing Range</string>
+             <string>Grid</string>
             </property>
            </widget>
           </item>

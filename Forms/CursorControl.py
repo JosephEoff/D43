@@ -17,7 +17,7 @@ class CursorControl(QWidget,  Ui_WebCamView):
         self.setMouseTracking(True)
         
         self.cursors = []
-        self.barWidth= 4
+        self.barWidth= 5
         self.cursorWidth = self.width()
         self.cursorHeight = self.height()
 
