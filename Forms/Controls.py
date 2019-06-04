@@ -14,7 +14,9 @@ class Controls(QWidget, Ui_Controls):
         self.fps = 24
         self.videocapture = None 
         self.setupUi(self)
-        self.groupBoxCalibration.hide()
+        self.dockWidgetCalibration.hide()
+        self.toolButtonCalibrate.clicked.connect(self.doShowCalibration)
+        
         self.availableCameras = self.getListOfCameras()
         self.comboBoxCameraSelect.addItems(self.availableCameras)
         self.checkBoxPause.stateChanged.connect(self.doPauseStateChanged)
@@ -66,6 +68,10 @@ class Controls(QWidget, Ui_Controls):
         self.spinBoxSelectedCycles.valueChanged.connect(self.settingChanged)
         self.start()
         self.updateOnCursorMove()
+    
+    def doShowCalibration(self):
+        self.dockWidgetCalibration.setFloating(True)
+        self.dockWidgetCalibration.show()
         
     def fillComboBoxes(self,  settings):
         # This looks stupidly complicated.  If I just left QT take care of things, it would be much shorter.
