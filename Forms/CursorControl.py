@@ -1,6 +1,6 @@
 from PyQt5.QtGui import QPainter,  QPen , QPixmap , QColor
 from PyQt5.QtWidgets import QWidget
-from PyQt5.QtCore import Qt,  QLineF
+from PyQt5.QtCore import Qt,  QLineF,  pyqtSignal
 
 from Forms.Ui_WebCamView import Ui_WebCamView
 from Forms.Cursor_Enums import CursorType
@@ -8,6 +8,8 @@ from Forms.Cursor_Enums import CursorStyle
 from Forms.Cursor import Cursor
 
 class CursorControl(QWidget,  Ui_WebCamView):
+    cursorMoved = pyqtSignal()
+    
     def __init__(self, parent):
         super(QWidget, self).__init__()
         
@@ -98,6 +100,7 @@ class CursorControl(QWidget,  Ui_WebCamView):
         event.accept()
         self.changeCursorPosition(self.movingCursor,  event.pos())
         self.drawCursors()
+        self.cursorMoved.emit()
         
     def changeCursorPosition(self,  cursor,  eventPosition):
         x = eventPosition.x()

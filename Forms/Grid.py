@@ -68,7 +68,7 @@ class Grid(QWidget, Ui_WebCamView):
     def getPixelsPerDivision_Horizontal(self):
         return self.pixelsPercm_H
     
-    def getPixelsPerDivisionVertical(self):
+    def getPixelsPerDivision_Vertical(self):
         return self.pixelsPercm_V
     
         
