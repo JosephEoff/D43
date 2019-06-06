@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtMultimedia
 from PyQt5.QtCore import QSettings
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget,  QApplication,  QFileDialog
+import os
 from quantiphy import Quantity
 import cv2
 from Forms.Ui_Controls import Ui_Controls
@@ -25,6 +26,7 @@ class Controls(QWidget, Ui_Controls):
         self.pushButtonCrop.clicked.connect(self.on_buttonCropClicked)
         self.pushButtonReset.clicked.connect(self.on_buttonResetClicked)
         self.pushButtonGrid.clicked.connect(self.on_buttonGridClicked)
+        self.pushButtonSnapshot .clicked.connect(self.on_buttonSnapshotClicked)
         self.widgetCursorControl.cursorMoved.connect(self.updateOnCursorMove)
 
         
@@ -68,6 +70,16 @@ class Controls(QWidget, Ui_Controls):
         self.spinBoxSelectedCycles.valueChanged.connect(self.settingChanged)
         self.start()
         self.updateOnCursorMove()
+    
+    def on_buttonSnapshotClicked(self):
+        snapshot = QApplication.primaryScreen().grabWindow(self.groupBoxDisplay.winId())
+        filename,  filter = QFileDialog.getSaveFileName(self, 'Save File',  '',  'PNG Files (*.png)')
+        if filename:
+            filename, extension = os.path.splitext(filename)
+
+            filename = filename + '.png'
+            snapshot.save(filename,  "PNG")
+        
     
     def doShowCalibration(self):
         self.dockWidgetCalibration.setFloating(True)
@@ -197,6 +209,8 @@ class Controls(QWidget, Ui_Controls):
         try:
             ret, frame = self.videocapture.read()
             if not ret:
+                self.stop()
+                self.start()
                 return
         # Assume Webcam gives BGR format images
         # May need to add an option or check the format from cv2 somehow
@@ -206,7 +220,7 @@ class Controls(QWidget, Ui_Controls):
         # [y1:y2, x1:x2, keep all the colors.]
             frame = frame[self.crop_Y1:self.crop_Y2, self.crop_X1:self.crop_X2, :]
         except:
-           return
+            return
  
         if self.checkBoxLive.isChecked():
             self.widgetLiveView.setImage(frame)

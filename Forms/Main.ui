@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>D43 - Oscilloscope Camera</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../D43_Resources.qrc">
+    <normaloff>:/icons/D43-Icon.png</normaloff>:/icons/D43-Icon.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
@@ -75,6 +79,8 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../D43_Resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
