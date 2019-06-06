@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project DigitalD43 -->
-<!-- Saved: 2019-05-19, 23:17:26 -->
+<!-- Saved: 2019-06-06, 22:27:17 -->
 <!-- Copyright (C) 2019 Joseph Eoff, joseph.eoff@molear.de -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -15,6 +15,7 @@
   <Eol index="0"/>
   <Sources>
     <Source>D43.py</Source>
+    <Source>D43_Resources_rc.py</Source>
     <Source>Forms/Controls.py</Source>
     <Source>Forms/Cursor.py</Source>
     <Source>Forms/CursorControl.py</Source>
@@ -26,6 +27,7 @@
     <Source>Forms/Ui_Main.py</Source>
     <Source>Forms/Ui_WebCamView.py</Source>
     <Source>Forms/WebCamView.py</Source>
+    <Source>Forms/icons_rc.py</Source>
     <Source>__init__.py</Source>
   </Sources>
   <Forms>
@@ -34,6 +36,9 @@
     <Form>Forms/Main.ui</Form>
     <Form>Forms/WebCamView.ui</Form>
   </Forms>
+  <Resources>
+    <Resource>D43_Resources.qrc</Resource>
+  </Resources>
   <MainScript>D43.py</MainScript>
   <Vcs>
     <VcsType>Git</VcsType>
