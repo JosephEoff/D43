@@ -34,8 +34,8 @@ class CursorControl(QWidget,  Ui_WebCamView):
         
         
     def addCursors(self):
-        cursorColor = QColor(0, 186, 255, 255)
-        cursorBarColor = QColor(0, 186, 255, 100)
+        cursorColor = QColor(0, 186, 255, 100)
+        cursorBarColor = QColor(0, 186, 255, 255)
         
         cursor = Cursor(15,  cursorColor,  cursorBarColor,  CursorType.horizontal,  CursorStyle.barred)
         self.addCursor(cursor)
@@ -53,8 +53,8 @@ class CursorControl(QWidget,  Ui_WebCamView):
         self.addCursor(cursor)
         self.cursor_T2 = cursor
         
-        cursorColor = QColor(128, 128, 128, 255)
-        cursorBarColor = QColor(128, 128, 128, 100)
+        cursorColor = QColor(128, 128, 128, 100)
+        cursorBarColor = QColor(128, 128, 128, 255)
         cursor = Cursor(200,  cursorColor,  cursorBarColor,  CursorType.zeroline,  CursorStyle.barred)
         self.addCursor(cursor)
         self.cursor_zero = cursor

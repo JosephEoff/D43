@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/dev/EricProjects/DigitalD43/Forms/WebCamView.ui'
+# Form implementation generated from reading ui file '/home/joseph/EricProjects/D43/Forms/WebCamView.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #

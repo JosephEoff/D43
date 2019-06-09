@@ -11,6 +11,7 @@ class Controls(QWidget, Ui_Controls):
         super(QWidget, self).__init__()
                 
         self.transparentThreshold = 20
+        self.timer =  None
         self.thresholdMode = cv2.THRESH_BINARY
         self.fps = 24
         self.videocapture = None 
@@ -22,7 +23,6 @@ class Controls(QWidget, Ui_Controls):
         self.comboBoxCameraSelect.addItems(self.availableCameras)
         self.checkBoxPause.stateChanged.connect(self.doPauseStateChanged)
         self.checkBoxLines.stateChanged.connect(self.doLineModeSelect)
-        self.comboBoxCameraSelect.currentIndexChanged.connect(self.changeCamera)
         self.pushButtonCrop.clicked.connect(self.on_buttonCropClicked)
         self.pushButtonReset.clicked.connect(self.on_buttonResetClicked)
         self.pushButtonGrid.clicked.connect(self.on_buttonGridClicked)
@@ -60,14 +60,19 @@ class Controls(QWidget, Ui_Controls):
         self.grid_VerticalDivisions = int(self.settings.value("grid_VerticalDivisions",  6))
         self.spinBoxHorizontalDivisions.setValue(self.grid_HorizontalDivisions)
         self.spinBoxVerticalDivisions.setValue(self.grid_VerticalDivisions)
-        
         self.updateGrid()        
         self.updateDigitizingRange()        
         self.fillComboBoxes(self.settings)
+        self.setComboBoxSelectedItemFromSettings(self.settings, "Camera", self.comboBoxCameraSelect )
+        self.setComboBoxSelectedItemFromSettings(self.settings, "Multiplier_Selected",  self.comboBoxMultiplier)
+        self.setComboBoxSelectedItemFromSettings(self.settings, "Timebase_Selected",  self.comboBoxTimeBase)
+        self.setComboBoxSelectedItemFromSettings(self.settings, "VerticalDeflection_Selected",  self.comboBoxVerticalDeflection)
+        self.spinBoxSelectedCycles.setValue(int(self.settings.value("SelectedCycles",  "1")))
         self.comboBoxMultiplier.currentIndexChanged.connect(self.settingChanged)
         self.comboBoxTimeBase.currentIndexChanged.connect(self.settingChanged)
         self.comboBoxVerticalDeflection.currentIndexChanged.connect(self.settingChanged)
-        self.spinBoxSelectedCycles.valueChanged.connect(self.settingChanged)
+        self.spinBoxSelectedCycles.valueChanged.connect(self.settingChanged) 
+        self.comboBoxCameraSelect.currentIndexChanged.connect(self.changeCamera)
         self.start()
         self.updateOnCursorMove()
     
@@ -76,10 +81,8 @@ class Controls(QWidget, Ui_Controls):
         filename,  filter = QFileDialog.getSaveFileName(self, 'Save File',  '',  'PNG Files (*.png)')
         if filename:
             filename, extension = os.path.splitext(filename)
-
             filename = filename + '.png'
-            snapshot.save(filename,  "PNG")
-        
+            snapshot.save(filename,  "PNG")        
     
     def doShowCalibration(self):
         self.dockWidgetCalibration.setFloating(True)
@@ -107,7 +110,13 @@ class Controls(QWidget, Ui_Controls):
             settings.setValue("multipliers",  str(self.multipliers).strip('[]'))
         self.multipliers = self.listOfTuplesFromString(settings.value("multipliers"))
         self.fillComboBoxFromListOfTuples(self.comboBoxMultiplier,  self.multipliers)
-
+        
+    def setComboBoxSelectedItemFromSettings(self,  settings,  settingName,  combobox):
+        savedItemName = settings.value(settingName,  "-")
+        itemIndex =  combobox.findText(savedItemName )
+        if itemIndex>=0:
+            combobox.setCurrentIndex(itemIndex)
+        
     def fillComboBoxFromListOfTuples(self, combobox,   valuesList):
         combobox.clear()
         for item in  valuesList:
@@ -182,8 +191,9 @@ class Controls(QWidget, Ui_Controls):
             self.widgetDigitizedView.setLineMode(False)
     
     def changeCamera(self, selectedCameraIndex):
+        self.settings.setValue("Camera",  self.comboBoxCameraSelect.currentText())
         self.stop()
-        self.doRun()
+        self.start()
     
     def start(self):
         cameraindex = self.comboBoxCameraSelect.currentIndex()
@@ -237,6 +247,10 @@ class Controls(QWidget, Ui_Controls):
     
     def settingChanged(self):
         self.updateOnCursorMove()
+        self.settings.setValue("Multiplier_Selected",  self.comboBoxMultiplier.currentText())
+        self.settings.setValue("Timebase_Selected",  self.comboBoxTimeBase.currentText())
+        self.settings.setValue("VerticalDeflection_Selected",  self.comboBoxVerticalDeflection.currentText())
+        self.settings.setValue("SelectedCycles",  self.spinBoxSelectedCycles.value())
         
     def updateOnCursorMove(self):
         VoltsPerPixel = self.comboBoxVerticalDeflection.currentData() / self.widgetGridView.getPixelsPerDivision_Horizontal()

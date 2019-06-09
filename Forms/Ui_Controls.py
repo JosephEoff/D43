@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/dev/EricProjects/DigitalD43/Forms/Controls.ui'
+# Form implementation generated from reading ui file '/home/joseph/EricProjects/D43/Forms/Controls.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Controls(object):
     def setupUi(self, Controls):
         Controls.setObjectName("Controls")
-        Controls.resize(434, 637)
+        Controls.resize(398, 628)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -110,6 +110,8 @@ class Ui_Controls(object):
         self.groupBoxTime.setObjectName("groupBoxTime")
         self.formLayout_2 = QtWidgets.QFormLayout(self.groupBoxTime)
         self.formLayout_2.setLabelAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.formLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.formLayout_2.setSpacing(0)
         self.formLayout_2.setObjectName("formLayout_2")
         self.labelDeltaT = QtWidgets.QLabel(self.groupBoxTime)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Preferred)
@@ -181,6 +183,8 @@ class Ui_Controls(object):
         self.groupBoxVoltage.setObjectName("groupBoxVoltage")
         self.formLayout = QtWidgets.QFormLayout(self.groupBoxVoltage)
         self.formLayout.setLabelAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.formLayout.setContentsMargins(0, 0, 0, 0)
+        self.formLayout.setSpacing(0)
         self.formLayout.setObjectName("formLayout")
         self.labelVpp = QtWidgets.QLabel(self.groupBoxVoltage)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Preferred)
@@ -209,7 +213,7 @@ class Ui_Controls(object):
         self.layoutScope.addLayout(self.verticalLayout, 0, 2, 1, 1)
         self.layoutControls = QtWidgets.QGridLayout()
         self.layoutControls.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
-        self.layoutControls.setContentsMargins(0, 0, 0, 10)
+        self.layoutControls.setContentsMargins(0, 0, 0, 0)
         self.layoutControls.setSpacing(0)
         self.layoutControls.setObjectName("layoutControls")
         self.groupBoxSettings = QtWidgets.QGroupBox(Controls)
@@ -410,6 +414,12 @@ class Ui_Controls(object):
         self.verticalLayout_3.addWidget(self.groupBoxCalibration)
         self.dockWidgetCalibration.setWidget(self.dockWidgetContents)
         self.layoutControls.addWidget(self.dockWidgetCalibration, 5, 0, 1, 1)
+        self.layoutControls.setRowStretch(0, 1)
+        self.layoutControls.setRowStretch(1, 1)
+        self.layoutControls.setRowStretch(2, 1)
+        self.layoutControls.setRowStretch(3, 1)
+        self.layoutControls.setRowStretch(4, 1)
+        self.layoutControls.setRowStretch(5, 1)
         self.layoutScope.addLayout(self.layoutControls, 0, 3, 1, 1)
         self.gridLayout_6.addLayout(self.layoutScope, 0, 1, 1, 1)
         spacerItem1 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
