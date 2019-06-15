@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>348</width>
+    <width>320</width>
     <height>536</height>
    </rect>
   </property>
@@ -36,7 +36,7 @@
     <number>0</number>
    </property>
    <item row="0" column="1">
-    <layout class="QGridLayout" name="layoutScope" columnstretch="1,1,1,1">
+    <layout class="QGridLayout" name="layoutScope" columnstretch="2,2,2,2">
      <property name="sizeConstraint">
       <enum>QLayout::SetNoConstraint</enum>
      </property>
@@ -56,7 +56,7 @@
       <number>0</number>
      </property>
      <item row="0" column="2">
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1">
        <property name="spacing">
         <number>0</number>
        </property>
@@ -823,6 +823,12 @@ border: 1px solid rgba(255,255,255,100);</string>
        </item>
        <item row="4" column="0">
         <widget class="QDockWidget" name="dockWidgetCalibration">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="floating">
           <bool>true</bool>
          </property>

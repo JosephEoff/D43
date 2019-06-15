@@ -72,4 +72,7 @@ class DigitizerView(QWidget, Ui_WebCamView):
         
     def getDigitizedData(self):
         return self.DigitizedData
+    
+    def getRange(self):
+        return self.range_X1,  self.range_X2
 
