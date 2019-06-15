@@ -87,7 +87,7 @@ class Controls(QWidget, Ui_Controls):
         self.dockWidgetCalibration.show()
         
     def fillComboBoxes(self,  settings):
-        # This looks stupidly complicated.  If I just left QT take care of things, it would be much shorter.
+        # This looks stupidly complicated.  If I just let QT take care of things, it would be much shorter.
         # I want user editable entries for these values in the settings file, though.
         # Qt encodes the strings and values in a way that you can't easily edit with a text editor.
         # Hence extra conversion steps.
@@ -231,13 +231,17 @@ class Controls(QWidget, Ui_Controls):
             return
  
         if self.checkBoxLive.isChecked():
+            self.widgetLiveView.show()
             self.widgetLiveView.setImage(frame)
         else:
             self.widgetLiveView.clearImage()
+            self.widgetLiveView.hide()
         
         if self.checkBoxDigitizedView.isChecked():
+            self.widgetDigitizedView.show()
             self.widgetDigitizedView.setImage(frame)
         else:
+            self.widgetDigitizedView.hide()
             self.widgetDigitizedView.clearImage()
             
         self.widgetGridView.updateGridSize(frame.shape[1],  frame.shape[0])

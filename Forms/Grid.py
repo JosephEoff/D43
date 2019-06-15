@@ -45,15 +45,7 @@ class Grid(QWidget, Ui_WebCamView):
             qp.drawLine(0, cheight+ystep,  self.gridWidth,  cheight+ystep)
             if n>0:
                 qp.drawLine(0, cheight-ystep,  self.gridWidth,  cheight-ystep)
-                
-        #Border around the display 
-        pen = QPen(QColor(255, 255, 255, 100), 1, Qt.SolidLine)
-        qp.setPen(pen)
-        qp.drawLine(0, 0,  self.gridWidth-1,  0)
-        qp.drawLine(0, self.gridHeight-1,  self.gridWidth-1,  self.gridHeight-1)
-        qp.drawLine(0, 0,  0,  self.gridHeight-1)
-        qp.drawLine(self.gridWidth-1, 0,  self.gridWidth-1,  self.gridHeight-1)
-        
+
         qp.end()
         self.viewer.setPixmap(gridPixmap)
 
