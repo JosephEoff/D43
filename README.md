@@ -19,7 +19,7 @@ Or combined:
 
 Use the onscreen cursors to measure voltage and frequency.
 
-There currently no installer available.  
+There is currently no installer available.  
 
 Clone or download the repository.
 
