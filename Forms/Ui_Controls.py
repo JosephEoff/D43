@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/dev/EricProjects/DigitalD43/Forms/Controls.ui'
+# Form implementation generated from reading ui file '/home/joseph/EricProjects/D43/Forms/Controls.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Controls(object):
     def setupUi(self, Controls):
         Controls.setObjectName("Controls")
-        Controls.resize(348, 536)
+        Controls.resize(320, 536)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -256,6 +256,8 @@ class Ui_Controls(object):
         self.verticalLayout.addWidget(self.groupBoxDisplay)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem)
+        self.verticalLayout.setStretch(0, 1)
+        self.verticalLayout.setStretch(1, 1)
         self.layoutScope.addLayout(self.verticalLayout, 0, 2, 1, 1)
         self.layoutControls = QtWidgets.QGridLayout()
         self.layoutControls.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
@@ -378,6 +380,11 @@ class Ui_Controls(object):
         self.gridLayout.addWidget(self.toolButtonCalibrate, 0, 0, 1, 1)
         self.layoutControls.addWidget(self.groupBoxSetup, 3, 0, 1, 1)
         self.dockWidgetCalibration = QtWidgets.QDockWidget(Controls)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.dockWidgetCalibration.sizePolicy().hasHeightForWidth())
+        self.dockWidgetCalibration.setSizePolicy(sizePolicy)
         self.dockWidgetCalibration.setFloating(True)
         self.dockWidgetCalibration.setFeatures(QtWidgets.QDockWidget.AllDockWidgetFeatures)
         self.dockWidgetCalibration.setObjectName("dockWidgetCalibration")
@@ -439,10 +446,10 @@ class Ui_Controls(object):
         self.layoutControls.setRowStretch(3, 2)
         self.layoutControls.setRowStretch(4, 2)
         self.layoutScope.addLayout(self.layoutControls, 0, 3, 1, 1)
-        self.layoutScope.setColumnStretch(0, 1)
-        self.layoutScope.setColumnStretch(1, 1)
-        self.layoutScope.setColumnStretch(2, 1)
-        self.layoutScope.setColumnStretch(3, 1)
+        self.layoutScope.setColumnStretch(0, 2)
+        self.layoutScope.setColumnStretch(1, 2)
+        self.layoutScope.setColumnStretch(2, 2)
+        self.layoutScope.setColumnStretch(3, 2)
         self.gridLayout_6.addLayout(self.layoutScope, 0, 1, 1, 1)
         spacerItem1 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_6.addItem(spacerItem1, 0, 2, 1, 1)

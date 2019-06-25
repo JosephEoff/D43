@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QWidget,  QApplication,  QFileDialog
 import os
 from quantiphy import Quantity
 import cv2
+import csv
 from Forms.Ui_Controls import Ui_Controls
 
 class Controls(QWidget, Ui_Controls):
@@ -27,6 +28,7 @@ class Controls(QWidget, Ui_Controls):
         self.pushButtonReset.clicked.connect(self.on_buttonResetClicked)
         self.pushButtonGrid.clicked.connect(self.on_buttonGridClicked)
         self.pushButtonSnapshot .clicked.connect(self.on_buttonSnapshotClicked)
+        self.pushButtonDigitizedData.clicked.connect(self.on_SaveDigitizedDataClicked)
         self.widgetCursorControl.cursorMoved.connect(self.updateOnCursorMove)
 
         
@@ -74,9 +76,26 @@ class Controls(QWidget, Ui_Controls):
         self.start()
         self.updateOnCursorMove()
     
+    def on_SaveDigitizedDataClicked(self):
+        data = self.widgetDigitizedView.getDigitizedData()
+        data = self.widgetCursorControl.getZero_pixels() - data
+        data = data * self.getVoltsPerPixel()
+        filename,  filter = QFileDialog.getSaveFileName(self, 'Save CSV Data File',  '',  'CSV Files (*.csv)')
+        if filename:
+            filename, extension = os.path.splitext(filename)
+            filename = filename + '.csv'
+            timePerPixel = self.getSecondsPerPixel()
+            count = 0
+            x1, x2 = self.widgetDigitizedView.getRange()
+            with open( filename, 'w') as csvfile:
+                 for x in range(x1, x2+1):
+                    csvwriter = csv.writer(csvfile, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                    csvwriter.writerow([count * timePerPixel,   data[x]])
+                    count = count + 1
+    
     def on_buttonSnapshotClicked(self):
         snapshot = QApplication.primaryScreen().grabWindow(self.groupBoxDisplay.winId())
-        filename,  filter = QFileDialog.getSaveFileName(self, 'Save File',  '',  'PNG Files (*.png)')
+        filename,  filter = QFileDialog.getSaveFileName(self, 'Save Snapshot',  '',  'PNG Files (*.png)')
         if filename:
             filename, extension = os.path.splitext(filename)
             filename = filename + '.png'
@@ -239,11 +258,11 @@ class Controls(QWidget, Ui_Controls):
         
         if self.checkBoxDigitizedView.isChecked():
             self.widgetDigitizedView.show()
-            self.widgetDigitizedView.setImage(frame)
         else:
             self.widgetDigitizedView.hide()
-            self.widgetDigitizedView.clearImage()
-            
+        
+        self.widgetDigitizedView.setImage(frame)
+        
         self.widgetGridView.updateGridSize(frame.shape[1],  frame.shape[0])
         self.widgetCursorControl.updateSize(frame.shape[1],  frame.shape[0])
     
@@ -252,18 +271,27 @@ class Controls(QWidget, Ui_Controls):
         self.settings.setValue("Multiplier_Selected",  self.comboBoxMultiplier.currentText())
         self.settings.setValue("Timebase_Selected",  self.comboBoxTimeBase.currentText())
         self.settings.setValue("VerticalDeflection_Selected",  self.comboBoxVerticalDeflection.currentText())
-        
-    def updateOnCursorMove(self):
+    
+    def getVoltsPerDivision(self):
         multiplier = self.comboBoxMultiplier.currentData()
         VperDiv = multiplier * self.comboBoxVerticalDeflection.currentData()
-        VoltsPerPixel = VperDiv  / self.widgetGridView.getPixelsPerDivision_Horizontal()
-        volts =  VoltsPerPixel * abs (self.widgetCursorControl.getY1_pixels() - self.widgetCursorControl.getY2_pixels()) 
+        return VperDiv
+        
+    def getVoltsPerPixel(self):
+        VoltsPerPixel = self.getVoltsPerDivision()  / self.widgetGridView.getPixelsPerDivision_Horizontal()
+        return VoltsPerPixel
+        
+    def getSecondsPerPixel(self):
+        return self.comboBoxTimeBase.currentData() / self.widgetGridView.getPixelsPerDivision_Vertical()
+        
+    def updateOnCursorMove(self):
+        volts =  self.getVoltsPerPixel ()* abs (self.widgetCursorControl.getY1_pixels() - self.widgetCursorControl.getY2_pixels()) 
         volts = Quantity(volts, "V")
         self.labelVppDisplay.setText(str(volts))
-        voltsDiv = Quantity(VperDiv, "V")
+        voltsDiv = Quantity(self.getVoltsPerDivision(), "V")
         self.labelVperDivDisplay.setText(str(voltsDiv))
         
-        SecondsPerPixel = self.comboBoxTimeBase.currentData() / self.widgetGridView.getPixelsPerDivision_Vertical()
+        SecondsPerPixel = self.getSecondsPerPixel()
         deltaT = SecondsPerPixel * abs(self.widgetCursorControl.getX1_pixels() - self.widgetCursorControl.getX2_pixels())
         deltaT_inverse = 1/deltaT
         deltaT = Quantity(deltaT,  "s")
