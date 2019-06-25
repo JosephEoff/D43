@@ -89,7 +89,7 @@ class Controls(QWidget, Ui_Controls):
             x1, x2 = self.widgetDigitizedView.getRange()
             with open( filename, 'w') as csvfile:
                  for x in range(x1, x2+1):
-                    csvwriter = csv.writer(csvfile, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                    csvwriter = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
                     csvwriter.writerow([count * timePerPixel,   data[x]])
                     count = count + 1
     
