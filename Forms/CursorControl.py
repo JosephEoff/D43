@@ -99,7 +99,7 @@ class CursorControl(QWidget,  Ui_WebCamView):
             return
         event.accept()
         self.changeCursorPosition(self.movingCursor,  event.pos())
-        self.drawCursors()
+        #self.drawCursors()
         self.cursorMoved.emit()
         
     def changeCursorPosition(self,  cursor,  eventPosition):
@@ -153,7 +153,7 @@ class CursorControl(QWidget,  Ui_WebCamView):
         
     def addCursor(self,  cursor):
         self.cursors.append(cursor)
-        self.drawCursors()
+        #self.drawCursors()
             
     def paintEvent(self, event):
         self.drawCursors()

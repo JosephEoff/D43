@@ -22,7 +22,7 @@ class DigitizerView(QWidget, Ui_WebCamView):
     
     def setLineMode(self,  lineModeOn):
         self.lineMode=lineModeOn
-        self.redrawImage()
+        #self.redrawImage()
     
     def setDigitizingRange(self,  X1,  X2):
         self.range_X1 = X1
@@ -30,8 +30,11 @@ class DigitizerView(QWidget, Ui_WebCamView):
     
     def setImage(self, scopeImage):
         self.ScopeImage = scopeImage
+        #self.redrawImage()
+    
+    def paintEvent(self, event):
         self.redrawImage()
-        
+    
     def redrawImage(self):
         b, g, r = cv2.split(self.ScopeImage)
         digipix= QtGui.QPixmap(self.ScopeImage.shape[1], self.ScopeImage.shape[0])
