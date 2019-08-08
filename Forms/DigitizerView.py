@@ -14,28 +14,28 @@ class DigitizerView(QWidget, Ui_WebCamView):
         self.range_X2 = 200
         self.lineMode = False
         self.traceColor = QtGui.QColor(255, 0, 0)
-        self.ScopeImage = np.zeros((200, 200))
-        self.DigitizedData = np.zeros((200, 200))
+        self.ScopeImage =  None #np.zeros((200, 200,  3))
+        self.DigitizedData = None #np.zeros((200, 200))
         
     def clearImage(self):
         self.viewer.clear()
     
     def setLineMode(self,  lineModeOn):
         self.lineMode=lineModeOn
-        #self.redrawImage()
     
     def setDigitizingRange(self,  X1,  X2):
         self.range_X1 = X1
         self.range_X2 = X2
-    
+   
     def setImage(self, scopeImage):
         self.ScopeImage = scopeImage
-        #self.redrawImage()
-    
+
     def paintEvent(self, event):
         self.redrawImage()
     
     def redrawImage(self):
+        if self.ScopeImage is None:
+            return
         b, g, r = cv2.split(self.ScopeImage)
         digipix= QtGui.QPixmap(self.ScopeImage.shape[1], self.ScopeImage.shape[0])
         digipix.fill(QtGui.QColor(0, 0, 0, 0))
