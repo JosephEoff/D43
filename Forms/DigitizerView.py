@@ -29,6 +29,7 @@ class DigitizerView(QWidget, Ui_WebCamView):
    
     def setImage(self, scopeImage):
         self.ScopeImage = scopeImage
+        self.digitizeImage()
 
     def paintEvent(self, event):
         self.redrawImage()
@@ -36,20 +37,21 @@ class DigitizerView(QWidget, Ui_WebCamView):
     def redrawImage(self):
         if self.ScopeImage is None:
             return
-        b, g, r = cv2.split(self.ScopeImage)
+            
         digipix= QtGui.QPixmap(self.ScopeImage.shape[1], self.ScopeImage.shape[0])
         digipix.fill(QtGui.QColor(0, 0, 0, 0))
-        spots = np.argmax(g, axis=0)
-        
-        self.DigitizedData = spots
         
         if self.lineMode:
-            self.drawLines(spots,  digipix,  g)
+            self.drawLines(self.DigitizedData,  digipix)
         else:
-            self.drawDots(spots,  digipix,  g)
+            self.drawDots(self.DigitizedData,  digipix)
+    
+    def digitizeImage(self):
+        b, g, r = cv2.split(self.ScopeImage)        
+        spots = np.argmax(g, axis=0)        
+        self.DigitizedData = spots
         
-        
-    def drawDots(self, spots,  digipix,  phosphor):
+    def drawDots(self, spots,  digipix):
         qp = QtGui.QPainter()
         qp.begin(digipix)
         qp.setPen(self.traceColor)
@@ -59,7 +61,7 @@ class DigitizerView(QWidget, Ui_WebCamView):
     
         self.viewer.setPixmap(digipix)
         
-    def drawLines(self, spots,  digipix,  phosphor):
+    def drawLines(self, spots,  digipix):
         lines = []
         for x in range(self.range_X1,  self.range_X2):
             line = QLineF(x,  spots[x],  x+1,  spots[x+1])
