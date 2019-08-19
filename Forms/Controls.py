@@ -6,6 +6,7 @@ from quantiphy import Quantity
 import cv2
 import csv
 from Forms.Ui_Controls import Ui_Controls
+import numpy as np
 
 class Controls(QWidget, Ui_Controls):
     def __init__(self, parent):
@@ -258,13 +259,23 @@ class Controls(QWidget, Ui_Controls):
         
         if self.checkBoxDigitizedView.isChecked():
             self.widgetDigitizedView.show()
+            self.calculateAndDisplayRMSVoltage()
         else:
             self.widgetDigitizedView.hide()
+            self.labelVRMS_Display .setText("-")
         
         self.widgetDigitizedView.setImage(frame)
         
         self.widgetGridView.updateGridSize(frame.shape[1],  frame.shape[0])
         self.widgetCursorControl.updateSize(frame.shape[1],  frame.shape[0])
+    
+    def calculateAndDisplayRMSVoltage(self):
+        data = self.widgetDigitizedView.getDigitizedData()
+        data = self.widgetCursorControl.getZero_pixels() - data
+        data = data * self.getVoltsPerPixel()
+        rms = np.sqrt(np.mean(np.square(data)))
+        rms = Quantity(rms, "V")
+        self.labelVRMS_Display .setText(str(rms))
     
     def settingChanged(self):
         self.updateOnCursorMove()

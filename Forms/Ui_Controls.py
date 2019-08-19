@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/joseph/EricProjects/D43/Forms/Controls.ui'
+# Form implementation generated from reading ui file '/home/dev/EricProjects/DigitalD43/Forms/Controls.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Controls(object):
     def setupUi(self, Controls):
         Controls.setObjectName("Controls")
-        Controls.resize(320, 536)
+        Controls.resize(322, 536)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -240,6 +240,20 @@ class Ui_Controls(object):
         self.labelVppDisplay.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.labelVppDisplay.setObjectName("labelVppDisplay")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.labelVppDisplay)
+        self.labelVRMS = QtWidgets.QLabel(self.groupBoxVoltage)
+        self.labelVRMS.setStyleSheet("color: rgb(0, 255, 255);")
+        self.labelVRMS.setObjectName("labelVRMS")
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.labelVRMS)
+        self.labelVRMS_Display = QtWidgets.QLabel(self.groupBoxVoltage)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.labelVRMS_Display.sizePolicy().hasHeightForWidth())
+        self.labelVRMS_Display.setSizePolicy(sizePolicy)
+        self.labelVRMS_Display.setStyleSheet("color: rgb(0, 255, 255);")
+        self.labelVRMS_Display.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.labelVRMS_Display.setObjectName("labelVRMS_Display")
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.labelVRMS_Display)
         self.gridLayout_11.addWidget(self.groupBoxVoltage, 0, 2, 1, 1)
         self.line = QtWidgets.QFrame(self.groupBoxMeasurements)
         self.line.setStyleSheet("color: rgb(0, 255, 255);")
@@ -472,6 +486,8 @@ class Ui_Controls(object):
         self.labelVperDivDisplay.setText(_translate("Controls", "0"))
         self.labelVpp.setText(_translate("Controls", "Vpp"))
         self.labelVppDisplay.setText(_translate("Controls", "0"))
+        self.labelVRMS.setText(_translate("Controls", "VRMS"))
+        self.labelVRMS_Display.setText(_translate("Controls", "-"))
         self.groupBoxSettings.setTitle(_translate("Controls", "Settings"))
         self.comboBoxTimeBase.setToolTip(_translate("Controls", "Seconds per centimeter"))
         self.labelTimeBase.setText(_translate("Controls", "Timebase"))
