@@ -275,7 +275,10 @@ class Controls(QWidget, Ui_Controls):
         data = data * self.getVoltsPerPixel()
         rms = np.sqrt(np.mean(np.square(data)))
         rms = Quantity(rms, "V")
+        rmsAC = np.sqrt(np.mean(np.square(data - np.mean(data))))
+        rmsAC = Quantity(rmsAC, "V")
         self.labelVRMS_Display .setText(str(rms))
+        self.labelVRMSAC_Display .setText(str(rmsAC))
     
     def settingChanged(self):
         self.updateOnCursorMove()
