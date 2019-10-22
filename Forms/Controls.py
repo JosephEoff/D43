@@ -263,6 +263,7 @@ class Controls(QWidget, Ui_Controls):
         else:
             self.widgetDigitizedView.hide()
             self.labelVRMS_Display .setText("-")
+            self.labelVRMSAC_Display .setText("-")
         
         self.widgetDigitizedView.setImage(frame)
         
