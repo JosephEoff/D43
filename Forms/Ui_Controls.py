@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Controls(object):
     def setupUi(self, Controls):
         Controls.setObjectName("Controls")
-        Controls.resize(346, 536)
+        Controls.resize(346, 558)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -374,7 +374,7 @@ class Ui_Controls(object):
         self.gridLayout_5.addWidget(self.checkBoxLines, 3, 1, 1, 1)
         self.checkBoxSingleShot = QtWidgets.QCheckBox(self.groupBoxView)
         self.checkBoxSingleShot.setObjectName("checkBoxSingleShot")
-        self.gridLayout_5.addWidget(self.checkBoxSingleShot, 4, 1, 1, 1)
+        self.gridLayout_5.addWidget(self.checkBoxSingleShot, 3, 0, 1, 1)
         self.layoutControls.addWidget(self.groupBoxView, 1, 0, 1, 1)
         self.groupBoxStorage = QtWidgets.QGroupBox(Controls)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
