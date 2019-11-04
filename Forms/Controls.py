@@ -48,6 +48,7 @@ class Controls(QWidget, Ui_Controls):
                                   
         self.multipliers = [("1", 1.0),  ("10", 0.1),  ("100", 0.01),  ("1000", 0.001)]
 
+        self.indexOfLastUsedCamera = -1
         self.settings = QSettings()
         self.rawImageWidth = int(self.settings.value("rawImageWidth",  640))
         self.rawImageHeight = int(self.settings.value("rawImageHeight",  480))
@@ -215,7 +216,17 @@ class Controls(QWidget, Ui_Controls):
     
     def start(self):
         cameraindex = self.comboBoxCameraSelect.currentIndex()
-        self.videocapture = cv2.VideoCapture(cameraindex )
+        #Only stop the videocapture when the selected camera is changed.
+        #Some cameras take a long time to initialize after open is called.
+        if not self.indexOfLastUsedCamera == cameraindex:
+            if not self.videocapture is None:
+                self.videocapture.release()
+            #Should be able to do just self.videocapture = cv2.VideoCapture(cameraindex )
+            #It worked with my old C170, but the C270 hangs after unpausing.
+            #Splitting the calls for the new videocapture and the open keeps the C270 from hanging.
+            self.videocapture = cv2.VideoCapture()
+            self.videocapture.open(cameraindex )
+            self.indexOfLastUsedCamera  = cameraindex
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.nextFrameSlot)
         self.timer.start(1000./self.fps)
@@ -223,8 +234,10 @@ class Controls(QWidget, Ui_Controls):
     def stop(self):
         if not self.timer is None:
             self.timer.stop()
-        if not self.videocapture is None:
-            self.videocapture.release()
+        #Do not stop the video capture.
+        #Some cameras take a long to to initialize
+        #Only stop the camera in the start method when a new camera is selected.
+
         
     def getListOfCameras(self):
         camerasInfoList = QtMultimedia.QCameraInfo.availableCameras()
@@ -235,9 +248,12 @@ class Controls(QWidget, Ui_Controls):
     
     def nextFrameSlot(self):
         try:
+            if self.checkBoxPause.isChecked():
+                return                
             ret, frame = self.videocapture.read()
             if not ret:
                 self.stop()
+                self.indexOfLastUsedCamera = -1
                 self.start()
                 return
         # Assume Webcam gives BGR format images
@@ -266,6 +282,11 @@ class Controls(QWidget, Ui_Controls):
             self.labelVRMSAC_Display .setText("-")
         
         self.widgetDigitizedView.setImage(frame)
+        
+        if self.checkBoxSingleShot.isChecked():
+            if self.widgetDigitizedView.isTriggered():
+                self.widgetDigitizedView.resetTrigger()
+                self.checkBoxPause.setChecked(True)
         
         self.widgetGridView.updateGridSize(frame.shape[1],  frame.shape[0])
         self.widgetCursorControl.updateSize(frame.shape[1],  frame.shape[0])

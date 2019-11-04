@@ -2,7 +2,6 @@ from PyQt5 import  QtGui
 from PyQt5.QtWidgets import QWidget
 from Forms.Ui_WebCamView import Ui_WebCamView
 import cv2
-import numpy as np
 
 class WebCamView(QWidget, Ui_WebCamView):
     def __init__(self, parent):

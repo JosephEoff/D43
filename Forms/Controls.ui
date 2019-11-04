@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>322</width>
-    <height>536</height>
+    <width>346</width>
+    <height>558</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -787,6 +787,13 @@ border: 1px solid rgba(255,255,255,100);</string>
            <widget class="QCheckBox" name="checkBoxLines">
             <property name="text">
              <string>Lines</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QCheckBox" name="checkBoxSingleShot">
+            <property name="text">
+             <string>Single shot</string>
             </property>
            </widget>
           </item>

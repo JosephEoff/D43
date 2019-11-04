@@ -16,6 +16,7 @@ class DigitizerView(QWidget, Ui_WebCamView):
         self.traceColor = QtGui.QColor(255, 0, 0)
         self.ScopeImage =  None #np.zeros((200, 200,  3))
         self.DigitizedData = None #np.zeros((200, 200))
+        self.triggered = False
         
     def clearImage(self):
         self.viewer.clear()
@@ -47,7 +48,12 @@ class DigitizerView(QWidget, Ui_WebCamView):
             self.drawDots(self.DigitizedData,  digipix)
     
     def digitizeImage(self):
-        b, g, r = cv2.split(self.ScopeImage)        
+        b, g, r = cv2.split(self.ScopeImage)       
+                           
+        if len(g[np.where(g > 20)]) > abs(self.range_X1- self.range_X2)*0.9:
+            self.triggered =  True
+        else:
+            self.triggered = False
         spots = np.argmax(g, axis=0)        
         self.DigitizedData = spots
         
@@ -81,3 +87,8 @@ class DigitizerView(QWidget, Ui_WebCamView):
     def getRange(self):
         return self.range_X1,  self.range_X2
 
+    def isTriggered(self):
+        return self.triggered
+    
+    def resetTrigger(self):
+        self.triggered = False
