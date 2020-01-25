@@ -25,4 +25,4 @@ Clone or download the repository.
 
 Start the program "D43.py"
 
-You will need Python 3.6 or higher, the Python OpenCV2 library, PyQt5, and Quantiphy installed.
+You will need Python 3.6 or higher, the Python OpenCV2 library, PyQt5, Numpy, and Quantiphy installed.
