@@ -21,8 +21,6 @@ Use the onscreen cursors to measure voltage and frequency.
 
 There is currently no installer available.  
 
-Clone or download the repository.
+See the [Wiki](https://github.com/JosephEoff/D43/wiki) for a description of the installation and setup of the D43 software.
 
-Start the program "D43.py"
-
-You will need Python 3.6 or higher, the Python OpenCV2 library, PyQt5, and Quantiphy installed.
+You will need Python 3.6 or higher, the Python OpenCV2 library, PyQt5, Numpy, and Quantiphy installed.
