@@ -28,7 +28,7 @@ class Controls(QWidget, Ui_Controls):
         self.pushButtonCrop.clicked.connect(self.on_buttonCropClicked)
         self.pushButtonReset.clicked.connect(self.on_buttonResetClicked)
         self.pushButtonGrid.clicked.connect(self.on_buttonGridClicked)
-        self.pushButtonSnapshot .clicked.connect(self.on_buttonSnapshotClicked)
+        self.pushButtonSnapshot.clicked.connect(self.on_buttonSnapshotClicked)
         self.pushButtonDigitizedData.clicked.connect(self.on_SaveDigitizedDataClicked)
         self.widgetCursorControl.cursorMoved.connect(self.updateOnCursorMove)
 
@@ -329,7 +329,10 @@ class Controls(QWidget, Ui_Controls):
         
         SecondsPerPixel = self.getSecondsPerPixel()
         deltaT = SecondsPerPixel * abs(self.widgetCursorControl.getX1_pixels() - self.widgetCursorControl.getX2_pixels())
-        deltaT_inverse = 1/deltaT
+        if deltaT == 0:
+            deltaT_inverse = 0.0
+        else:
+            deltaT_inverse = 1/deltaT
         deltaT = Quantity(deltaT,  "s")
         deltaT_inverse = Quantity(deltaT_inverse, "Hz")
         self.labelDeltaTDisplay.setText(str(deltaT))
