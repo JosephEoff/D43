@@ -25,6 +25,7 @@ class Controls(QWidget, Ui_Controls):
         self.comboBoxCameraSelect.addItems(self.availableCameras)
         self.checkBoxPause.stateChanged.connect(self.doPauseStateChanged)
         self.checkBoxLines.stateChanged.connect(self.doLineModeSelect)
+        self.checkBoxPersist.stateChanged.connect(self.doPersistStateChanged)
         self.pushButtonCrop.clicked.connect(self.on_buttonCropClicked)
         self.pushButtonReset.clicked.connect(self.on_buttonResetClicked)
         self.pushButtonGrid.clicked.connect(self.on_buttonGridClicked)
@@ -202,6 +203,12 @@ class Controls(QWidget, Ui_Controls):
             self.stop()
         else:
             self.start()
+            
+    def doPersistStateChanged(self, state):
+        if state ==QtCore.Qt.Checked:
+            self.widgetLiveView.setPersist(True)
+        else:
+            self.widgetLiveView.setPersist(False)
     
     def doLineModeSelect(self,  state):
         if state ==QtCore.Qt.Checked:

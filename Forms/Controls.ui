@@ -36,7 +36,7 @@
     <number>0</number>
    </property>
    <item row="0" column="1">
-    <layout class="QGridLayout" name="layoutScope" columnstretch="2,2,2,2">
+    <layout class="QGridLayout" name="layoutScope" columnstretch="2,0,0,0">
      <property name="sizeConstraint">
       <enum>QLayout::SetNoConstraint</enum>
      </property>
@@ -624,7 +624,7 @@ border: 1px solid rgba(255,255,255,100);</string>
       </layout>
      </item>
      <item row="0" column="3">
-      <layout class="QGridLayout" name="layoutControls" rowstretch="2,2,2,2,2">
+      <layout class="QGridLayout" name="layoutControls" rowstretch="2,0,0,0,0,0">
        <property name="sizeConstraint">
         <enum>QLayout::SetFixedSize</enum>
        </property>
@@ -783,17 +783,24 @@ border: 1px solid rgba(255,255,255,100);</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
-           <widget class="QCheckBox" name="checkBoxLines">
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="checkBoxSingleShot">
             <property name="text">
-             <string>Lines</string>
+             <string>Single shot</string>
             </property>
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QCheckBox" name="checkBoxSingleShot">
+           <widget class="QCheckBox" name="checkBoxPersist">
             <property name="text">
-             <string>Single shot</string>
+             <string>Persist</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QCheckBox" name="checkBoxLines">
+            <property name="text">
+             <string>Lines</string>
             </property>
            </widget>
           </item>
@@ -1029,6 +1036,19 @@ border: 1px solid rgba(255,255,255,100);</string>
           </layout>
          </widget>
         </widget>
+       </item>
+       <item row="5" column="0">
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </item>
