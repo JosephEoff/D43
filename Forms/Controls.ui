@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>346</width>
-    <height>558</height>
+    <height>559</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -56,7 +56,7 @@
       <number>0</number>
      </property>
      <item row="0" column="2">
-      <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1">
+      <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0">
        <property name="spacing">
         <number>0</number>
        </property>
@@ -615,8 +615,8 @@ border: 1px solid rgba(255,255,255,100);</string>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>20</width>
-           <height>40</height>
+           <width>10</width>
+           <height>0</height>
           </size>
          </property>
         </spacer>
@@ -624,7 +624,7 @@ border: 1px solid rgba(255,255,255,100);</string>
       </layout>
      </item>
      <item row="0" column="3">
-      <layout class="QGridLayout" name="layoutControls" rowstretch="2,0,0,0,0,0">
+      <layout class="QGridLayout" name="layoutControls" rowstretch="0,0,0,0,0,0">
        <property name="sizeConstraint">
         <enum>QLayout::SetFixedSize</enum>
        </property>
@@ -1045,12 +1045,25 @@ border: 1px solid rgba(255,255,255,100);</string>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>40</height>
+           <height>0</height>
           </size>
          </property>
         </spacer>
        </item>
       </layout>
+     </item>
+     <item row="1" column="3">
+      <spacer name="verticalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>0</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>
@@ -1063,22 +1076,6 @@ border: 1px solid rgba(255,255,255,100);</string>
       <size>
        <width>0</width>
        <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="1" column="1">
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>0</height>
       </size>
      </property>
     </spacer>
