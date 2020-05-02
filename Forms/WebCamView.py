@@ -42,9 +42,9 @@ class WebCamView(QWidget, Ui_WebCamView):
         
         if  self.persistImage.shape != scopeImage.shape:
             self.persistImage = scopeImage
-            return scopeImage
         
-        bright = np.where(green.min(0) >= 30)[0]
+        threshold = np.amax(self.persistImage[:, :, 1]) * 0.8
+        bright = np.where(green.min(0) >= threshold)[0]
         if bright.size>0:
             for x in np.nditer(bright):
                 self.persistImage[:, x] = scopeImage[:, x]
