@@ -3,7 +3,6 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import QLineF
 from Forms.Ui_WebCamView import Ui_WebCamView
 import numpy as np
-import cv2
 
 class DigitizerView(QWidget, Ui_WebCamView):
     def __init__(self, parent):
@@ -29,6 +28,8 @@ class DigitizerView(QWidget, Ui_WebCamView):
         self.range_X2 = X2
    
     def setImage(self, scopeImage):
+        if scopeImage is None:
+            return
         self.ScopeImage = scopeImage
         self.digitizeImage()
 
@@ -48,15 +49,16 @@ class DigitizerView(QWidget, Ui_WebCamView):
             self.drawDots(self.DigitizedData,  digipix)
     
     def digitizeImage(self):
-        b, g, r = cv2.split(self.ScopeImage)       
-         
-        trigger = np.max(g, axis=0) 
+        #b, g, r , a = cv2.split(self.ScopeImage)       
+        
+        green = self.ScopeImage[:, :, 1]
+        trigger = np.max(green, axis=0) 
         if len(trigger[np.where(trigger > 20)]) > abs(self.range_X1- self.range_X2)*0.9:
             self.triggered =  True
         else:
             self.triggered = False
             
-        spots = np.argmax(g, axis=0)        
+        spots = np.argmax(green, axis=0)        
         self.DigitizedData = spots
         
     def drawDots(self, spots,  digipix):

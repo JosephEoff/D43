@@ -275,10 +275,13 @@ class Controls(QWidget, Ui_Controls):
  
         if self.checkBoxLive.isChecked():
             self.widgetLiveView.show()
-            self.widgetLiveView.setImage(frame)
         else:
             self.widgetLiveView.clearImage()
             self.widgetLiveView.hide()
+            
+        self.widgetLiveView.setImage(frame)
+        
+        self.widgetDigitizedView.setImage(self.widgetLiveView.getCurrentImage())
         
         if self.checkBoxDigitizedView.isChecked():
             self.widgetDigitizedView.show()
@@ -287,9 +290,7 @@ class Controls(QWidget, Ui_Controls):
             self.widgetDigitizedView.hide()
             self.labelVRMS_Display .setText("-")
             self.labelVRMSAC_Display .setText("-")
-        
-        self.widgetDigitizedView.setImage(frame)
-        
+                
         if self.checkBoxSingleShot.isChecked():
             if self.widgetDigitizedView.isTriggered():
                 self.widgetDigitizedView.resetTrigger()

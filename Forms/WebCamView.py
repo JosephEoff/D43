@@ -14,6 +14,7 @@ class WebCamView(QWidget, Ui_WebCamView):
             self.rescaled=False
             self.persist = False
             self.persistImage = None
+            self.liveViewOn = True
 
     def clearImage(self):
         self.viewer.clear()
@@ -21,6 +22,12 @@ class WebCamView(QWidget, Ui_WebCamView):
     def setPersist(self, persistOn):
         self.persist = persistOn
         self.persistImage = None
+        
+    def setLiveViewOn(self,  On):
+        self.liveViewOn = On
+    
+    def getCurrentImage(self):
+        return self.persistImage
     
     def setImage(self, scopeImage):
         grayframe = cv2.cvtColor(scopeImage, cv2.COLOR_RGB2GRAY)
@@ -34,7 +41,10 @@ class WebCamView(QWidget, Ui_WebCamView):
         scopeImage= cv2.merge(rgba,4)
         if self.persist:
             scopeImage = self.doImagePersistance(scopeImage,  green)
-            
+         
+        self.persistImage = scopeImage
+        if not self.liveViewOn:
+            return
         img = QtGui.QImage(scopeImage, scopeImage.shape[1], scopeImage.shape[0], QtGui.QImage.Format_RGBA8888)
         pix = QtGui.QPixmap.fromImage(img)
         self.viewer.setPixmap(pix)
