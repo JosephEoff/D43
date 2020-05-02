@@ -20,16 +20,20 @@ class WebCamView(QWidget, Ui_WebCamView):
     
     def setPersist(self, persistOn):
         self.persist = persistOn
+        self.persistImage = None
     
     def setImage(self, scopeImage):
         grayframe = cv2.cvtColor(scopeImage, cv2.COLOR_RGB2GRAY)
         ret, alpha = cv2.threshold(grayframe,  self.transparentThreshold, 255,  self.thresholdMode)
        
-        b, g, r = cv2.split(scopeImage)
-        rgba = [b,g,r, alpha]
+        blue = scopeImage[:, :, 0]
+        green = scopeImage[:, :, 1]
+        red = scopeImage[:, :, 2]
+        
+        rgba = [blue,green,red, alpha]
         scopeImage= cv2.merge(rgba,4)
         if self.persist:
-            scopeImage = self.doImagePersistance(scopeImage,  g)
+            scopeImage = self.doImagePersistance(scopeImage,  green)
             
         img = QtGui.QImage(scopeImage, scopeImage.shape[1], scopeImage.shape[0], QtGui.QImage.Format_RGBA8888)
         pix = QtGui.QPixmap.fromImage(img)
@@ -44,7 +48,7 @@ class WebCamView(QWidget, Ui_WebCamView):
             self.persistImage = scopeImage
         
         threshold = np.amax(self.persistImage[:, :, 1]) * 0.8
-        bright = np.where(green.min(0) >= threshold)[0]
+        bright = np.where(green.max(0) >= threshold)[0]
         if bright.size>0:
             for x in np.nditer(bright):
                 self.persistImage[:, x] = scopeImage[:, x]
