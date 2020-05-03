@@ -25,6 +25,7 @@ class Controls(QWidget, Ui_Controls):
         self.comboBoxCameraSelect.addItems(self.availableCameras)
         self.checkBoxPause.stateChanged.connect(self.doPauseStateChanged)
         self.checkBoxLines.stateChanged.connect(self.doLineModeSelect)
+        self.checkBoxPersist.stateChanged.connect(self.doPersistStateChanged)
         self.pushButtonCrop.clicked.connect(self.on_buttonCropClicked)
         self.pushButtonReset.clicked.connect(self.on_buttonResetClicked)
         self.pushButtonGrid.clicked.connect(self.on_buttonGridClicked)
@@ -202,6 +203,12 @@ class Controls(QWidget, Ui_Controls):
             self.stop()
         else:
             self.start()
+            
+    def doPersistStateChanged(self, state):
+        if state ==QtCore.Qt.Checked:
+            self.widgetLiveView.setPersist(True)
+        else:
+            self.widgetLiveView.setPersist(False)
     
     def doLineModeSelect(self,  state):
         if state ==QtCore.Qt.Checked:
@@ -268,10 +275,13 @@ class Controls(QWidget, Ui_Controls):
  
         if self.checkBoxLive.isChecked():
             self.widgetLiveView.show()
-            self.widgetLiveView.setImage(frame)
         else:
             self.widgetLiveView.clearImage()
             self.widgetLiveView.hide()
+            
+        self.widgetLiveView.setImage(frame)
+        
+        self.widgetDigitizedView.setImage(self.widgetLiveView.getCurrentImage())
         
         if self.checkBoxDigitizedView.isChecked():
             self.widgetDigitizedView.show()
@@ -280,9 +290,7 @@ class Controls(QWidget, Ui_Controls):
             self.widgetDigitizedView.hide()
             self.labelVRMS_Display .setText("-")
             self.labelVRMSAC_Display .setText("-")
-        
-        self.widgetDigitizedView.setImage(frame)
-        
+                
         if self.checkBoxSingleShot.isChecked():
             if self.widgetDigitizedView.isTriggered():
                 self.widgetDigitizedView.resetTrigger()
