@@ -22,15 +22,15 @@ class Grid(QWidget, Ui_WebCamView):
         self.drawGrid()
                 
     def drawGrid(self):
-        gridPixmap = QPixmap(self.gridWidth, self.gridHeight)
+        gridPixmap = QPixmap(self.gridWidth + 1, self.gridHeight)
         gridPixmap.fill(QColor(255, 255, 255, 0))
         
         qp = QPainter()
         qp.begin(gridPixmap)
         pen = QPen(QColor(255, 120, 0, 100), 1, Qt.SolidLine)
         qp.setPen(pen)
-        cwidth= (self.grid_X1 + self.grid_X2)/2
-        cheight= (self.grid_Y1+self.grid_Y2)/2
+        cwidth= (self.grid_X1 + self.grid_X2)/2 
+        cheight= (self.grid_Y1+self.grid_Y2)/2 
         hcount=cwidth/self.pixelsPercm_H + 1
         vcount=cheight/self.pixelsPercm_V + 1
         
@@ -42,9 +42,9 @@ class Grid(QWidget, Ui_WebCamView):
                 
         for n in range(int(vcount+0.5)):
             ystep= n*self.pixelsPercm_H
-            qp.drawLine(0, cheight+ystep,  self.gridWidth,  cheight+ystep)
+            qp.drawLine(0, cheight+ystep,  self.gridWidth  ,  cheight+ystep)
             if n>0:
-                qp.drawLine(0, cheight-ystep,  self.gridWidth,  cheight-ystep)
+                qp.drawLine(0, cheight-ystep,  self.gridWidth ,  cheight-ystep)
 
         qp.end()
         self.viewer.setPixmap(gridPixmap)

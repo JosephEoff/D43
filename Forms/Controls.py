@@ -296,8 +296,8 @@ class Controls(QWidget, Ui_Controls):
                 self.widgetDigitizedView.resetTrigger()
                 self.checkBoxPause.setChecked(True)
         
-        self.widgetGridView.updateGridSize(frame.shape[1],  frame.shape[0])
-        self.widgetCursorControl.updateSize(frame.shape[1],  frame.shape[0])
+        self.widgetGridView.updateGridSize(frame.shape[1] -2,  frame.shape[0]-1)
+        self.widgetCursorControl.updateSize(frame.shape[1] -2,  frame.shape[0]-1)
     
     def calculateAndDisplayRMSVoltage(self):
         data = self.widgetDigitizedView.getDigitizedData()
