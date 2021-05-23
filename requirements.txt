@@ -1,0 +1,4 @@
+quantiphy
+numpy
+PyQt5
+opencv-python-headless
