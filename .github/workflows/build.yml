@@ -53,6 +53,7 @@ jobs:
             TARGET: ubuntu
             CMD_BUILD: pyinstaller -F -w -n D43 D43.py
             OUT_FILE_NAME: D43
+            ASSET_MIME: application/x-sharedlib
     steps:
     - uses: actions/checkout@v1
     - name: Set up Python 3.7
