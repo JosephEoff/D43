@@ -5,6 +5,7 @@ from Forms.Ui_Main import Ui_MainWindow
 if __name__ == "__main__":
     QCoreApplication.setOrganizationName("JRE")
     QCoreApplication.setApplicationName("DigitalD43")
+    QCoreApplication.setApplicationVersion('1.0.0')
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
